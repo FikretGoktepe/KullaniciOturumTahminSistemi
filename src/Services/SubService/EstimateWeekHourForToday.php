@@ -109,7 +109,7 @@ class EstimateWeekHourForToday
             $predictedLoginTime = $predictedDate;
         } else {
             $secondsList = [];
-
+            //Saat dilimindeki önceki saatlerin ortalaması alınıyor ve buna göre ortalama bir saat tahmini yapılıyor.
             foreach ($predictedCycleList as $time) {
                 $dt = new DateTime($time, new DateTimeZone('UTC'));
                 $seconds = ($dt->format('H') * 3600) + ($dt->format('i') * 60) + $dt->format('s');
