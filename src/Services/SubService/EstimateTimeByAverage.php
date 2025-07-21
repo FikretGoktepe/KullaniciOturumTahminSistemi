@@ -7,6 +7,7 @@ use Fikretgoktepe\KullaniciOturumTahminSistemi\Services\SubService\AverageFuncs\
 use DateTimeImmutable;
 use DateTimeZone;
 use DateTime;
+use Exception;
 use MathPHP\Statistics\Descriptive;
 use MathPHP\Statistics\Average;
 
@@ -16,12 +17,19 @@ class EstimateTimeByAverage
     {
         $diffs = [];
 
-        for ($i = 1; $i < count($logins); $i++) {
-            $prev = new DateTimeImmutable($logins[$i - 1], new DateTimeZone('UTC'));
-            $curr = new DateTimeImmutable($logins[$i], new DateTimeZone('UTC'));
+        //Giriş zamanları arasındaki zaman farkları hesaplanıyor.
+        try {
+            for ($i = 1; $i < count($logins); $i++) {
+                $prev = new DateTimeImmutable($logins[$i - 1], new DateTimeZone('UTC'));
+                $curr = new DateTimeImmutable($logins[$i], new DateTimeZone('UTC'));
 
-            $diffs[] = $curr->getTimestamp() - $prev->getTimestamp();
+                $diffs[] = $curr->getTimestamp() - $prev->getTimestamp();
+            }
+        } catch (Exception $e) {
+            return ['status' => 0, 'data' => 'ERROR_05', 'error-msg' => $e];
         }
+
+
 
         //Ortalama
         $mean = Average::mean($diffs);

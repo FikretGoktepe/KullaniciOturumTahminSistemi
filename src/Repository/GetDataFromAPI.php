@@ -32,6 +32,9 @@ class GetDataFromAPI
         $data = json_decode($response, true);
 
         $curlResult = [];
+        if (count($data['data']) == 0 || $data['data'] === null) {
+            return ['status' => 0, 'error-no' => 'ERROR_11'];
+        }
 
         try {
             foreach ($data['data']['rows'] as $row) {
@@ -39,7 +42,7 @@ class GetDataFromAPI
                 $curlResult[] = $user;
             }
         } catch (Exception $e) {
-            return ['status' => 0, 'error-no' => 'ERROR_01', 'error-msg' => $e]; 
+            return ['status' => 0, 'error-no' => 'ERROR_01', 'error-msg' => $e];
         }
 
         return ['status' => 1, 'data' => $curlResult];

@@ -13,4 +13,7 @@ enum ErrorLib: string
     case ERROR_06 = 'Weekly Calculation Error!';
     case ERROR_07 = 'Clear Outliers Error!';
     case ERROR_08 = 'Average And Weekly Calculation Error!';
+    case ERROR_09 = 'Average Hour Cyle Calculation Error!';
+    case ERROR_10 = 'Average Week Cyle Calculation Error!';
+    case ERROR_11 = 'Curl Request Success But Empty!';
 }
