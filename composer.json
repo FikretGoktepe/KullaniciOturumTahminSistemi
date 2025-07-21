@@ -1,0 +1,16 @@
+{
+    "name": "fikretgoktepe/kullanici-oturum-tahmin-sistemi",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Fikretgoktepe\\KullaniciOturumTahminSistemi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fikret Göktpe",
+            "email": "Fikret_Goktepe@outlook.com"
+        }
+    ],
+    "require": {}
+}
