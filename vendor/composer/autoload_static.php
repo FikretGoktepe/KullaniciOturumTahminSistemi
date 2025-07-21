@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit93e911d55c9dc754fdbbe64a571c7cad
 {
     public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'MathPHP\\' => 8,
+        ),
         'F' => 
         array (
             'Fikretgoktepe\\KullaniciOturumTahminSistemi\\' => 43,
@@ -14,6 +18,10 @@ class ComposerStaticInit93e911d55c9dc754fdbbe64a571c7cad
     );
 
     public static $prefixDirsPsr4 = array (
+        'MathPHP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/markrogoyski/math-php/src',
+        ),
         'Fikretgoktepe\\KullaniciOturumTahminSistemi\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

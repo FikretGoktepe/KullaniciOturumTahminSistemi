@@ -12,5 +12,5 @@
             "email": "Fikret_Goktepe@outlook.com"
         }
     ],
-    "require": {}
+    "require": {"markrogoyski/math-php": "2.11.0"}
 }

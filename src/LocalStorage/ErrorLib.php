@@ -11,4 +11,6 @@ enum ErrorLib: string
     case ERROR_04 = 'Unexpected Error!';
     case ERROR_05 = 'Average Calculation Error!';
     case ERROR_06 = 'Weekly Calculation Error!';
+    case ERROR_07 = 'Clear Outliers Error!';
+    case ERROR_08 = 'Average And Weekly Calculation Error!';
 }

@@ -2,6 +2,7 @@
 
 namespace Fikretgoktepe\KullaniciOturumTahminSistemi\Repository;
 
+use Exception;
 use Fikretgoktepe\KullaniciOturumTahminSistemi\Models\UserRawData;
 
 class GetDataFromAPI
@@ -21,9 +22,9 @@ class GetDataFromAPI
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            $error = curl_error($ch);
+            $e = curl_error($ch);
             curl_close($ch);
-            return ['status' => 'failed', 'error' => $error];
+            return ['status' => 0, 'error-no' => 'ERROR_01', 'error-msg' => $e];
         }
 
         curl_close($ch);
@@ -32,12 +33,15 @@ class GetDataFromAPI
 
         $curlResult = [];
 
-        foreach ($data['data']['rows'] as $row) {
-            $user = new UserRawData($row['id'], $row['name'], $row['logins']);
-            $curlResult[] = $user;
+        try {
+            foreach ($data['data']['rows'] as $row) {
+                $user = new UserRawData($row['id'], $row['name'], $row['logins']);
+                $curlResult[] = $user;
+            }
+        } catch (Exception $e) {
+            return ['status' => 0, 'error-no' => 'ERROR_01', 'error-msg' => $e]; 
         }
 
-        $result = ['status' => 'success', 'data' => $curlResult];
-        return $result;
+        return ['status' => 1, 'data' => $curlResult];
     }
 }

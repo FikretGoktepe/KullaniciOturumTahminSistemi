@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'MathPHP\\' => array($vendorDir . '/markrogoyski/math-php/src'),
     'Fikretgoktepe\\KullaniciOturumTahminSistemi\\' => array($baseDir . '/src'),
 );
