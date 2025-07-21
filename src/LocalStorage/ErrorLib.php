@@ -16,4 +16,5 @@ enum ErrorLib: string
     case ERROR_09 = 'Average Hour Cyle Calculation Error!';
     case ERROR_10 = 'Average Week Cyle Calculation Error!';
     case ERROR_11 = 'Curl Request Success But Empty!';
+    case ERROR_12 = 'Data too homogeneous for estimation!';
 }

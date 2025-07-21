@@ -10,6 +10,7 @@ use Fikretgoktepe\KullaniciOturumTahminSistemi\Services\SubService\EstimatedHour
 use Fikretgoktepe\KullaniciOturumTahminSistemi\LocalStorage\HourCycle;
 use Fikretgoktepe\KullaniciOturumTahminSistemi\LocalStorage\Weeks;
 use Fikretgoktepe\KullaniciOturumTahminSistemi\Services\SubService\EstimatedWeek;
+use Fikretgoktepe\KullaniciOturumTahminSistemi\Services\SubService\EstimateWeekHourForToday;
 
 class EstimateTimeService
 {
@@ -33,12 +34,13 @@ class EstimateTimeService
             $r1 = EstimateTimeByAverage::CalculateAverageTime($user->GetLogins());
             $r2 = EstimatedHour::EstimateHourCycle($user->GetLogins());
             $r3 = EstimatedWeek::EstimateWeekDay($user->GetLogins());
+            $r4 = EstimateWeekHourForToday::EstimatedWeakHour($user->GetLogins());
 
             //Hata var ise hata kodu yoksa işlem sonucu dönüşü sağlanıyor.
-            if ($r1['status'] == 0 && $r2['status'] == 0 && $r3 == 0)
-                return ['status' => 0, 'error-no' => 'ERROR_08', 'error-msg-average' => $r1['error-msg'], 'error-msg-hour' => $r2['error-msg'], 'error-msg-week' => $r3['error-msg']];
+            if ($r1['status'] == 0 && $r2['status'] == 0 && $r3['status'] == 0 && $r4['status'] == 0)
+                return ['status' => 0, 'error-no' => 'ERROR_08', 'error-msg-average' => $r1['error-msg'], 'error-msg-hour' => $r2['error-msg'], 'error-msg-week' => $r3['error-msg'], 'error-msg-hourweek' => $r4['error-msg']];
             else if ($r1['status'] == 1 && $r2['status'] == 1)
-                $userResults[] = new UserResultData($user->GetId(), $user->GetName(), $r1['data'], $r2Data = ($r2['status'] == 1) ? HourCycle::{'C' . (string)$r2['data']}->value : $r2['data'], $r3Data = ($r3['status'] == 1) ? Weeks::{'W' . (string)$r3['data']}->value : $r3['data'], $dataSufficiency);
+                $userResults[] = new UserResultData($user->GetId(), $user->GetName(), $r1['data'], $r2Data = ($r2['status'] == 1) ? HourCycle::{'C' . (string)$r2['data']}->value : $r2['data'], $r3Data = ($r3['status'] == 1) ? Weeks::{'W' . (string)$r3['data']}->value : $r3['data'],$r4['data'], $dataSufficiency);
         }
 
         return ['status' => 1, 'data' => $userResults];
